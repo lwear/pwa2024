@@ -11,7 +11,7 @@ self.addEventListener('install', function(event) {
         '/icons/horse-72-72.png',
         '/icons/horse-96-96.png',
         '/icons/horse-144-144.png',
-        '/icons/horse-512x512.png'
+        '/icons/horse-512-512.png'
       ]);
     })
   );
