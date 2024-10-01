@@ -50,7 +50,9 @@ To make a web app a valid Progressive Web App (PWA) and installable, you'll need
    ```
 
 ### 4. **Create App Icons**
-   - You'll need icons for different screen sizes. The two key sizes are 192x192 and 512x512 pixels, as specified in the manifest.
+   - You'll need icons for different screen sizes. The two key sizes are 192x192 and 512x512 pixels, as specified in the manifest.  Create your own icon or go to [FlatIcon](https://www.flaticon.com/).
+   - Use a website like [App Icon Generator](https://www.pwabuilder.com/imageGenerator) to generate icons of different sizes.
+   - Uploads these to your assets folder in glitch. It is my preference to create a new folder in glitch (console, `mkdir icons`) specifically for your icons and call it icons. You can then use the glitch console to copy these icons from the assets directory to your new icons directory following directions [here](https://support.glitch.com/t/assets-folder-path/4638/5).
    - Place these icons in your app's `icons` directory (or any other folder as long as it matches the path in the manifest).
 
 ### 5. **Implement a Service Worker**
