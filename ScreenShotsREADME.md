@@ -1,4 +1,4 @@
-###Manifest Error: Richer PWA Install UI won't be avaialble on desktop. Please add at least one screenshot with the form_factor set to wide.
+### Manifest Error: Richer PWA Install UI won't be avaialble on desktop. Please add at least one screenshot with the form_factor set to wide.
 
 This error refers to the need for **screenshots** in your PWA manifest for a better install experience, particularly on desktop devices. Google introduced this requirement to provide users with a preview of your app before they install it, similar to how app stores (like the Google Play Store) display screenshots.
 
