@@ -150,6 +150,6 @@ To make a web app a valid Progressive Web App (PWA) and installable, you'll need
 
 ### 9. **Deploy Your PWA**
    - Make sure your app is deployed using HTTPS.
-   - You can use platforms like [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/), or [GitHub Pages](https://pages.github.com/) to host your app.
+   - You can use platforms like [Glitch](https://www.glitch.com), [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/), or [GitHub Pages](https://pages.github.com/) to host your app.
 
 Following these steps will make your app a valid and installable PWA, providing users with an experience similar to a native app.
