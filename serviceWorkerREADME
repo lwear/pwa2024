@@ -1,0 +1,79 @@
+# Service Worker - cache fetch events
+
+To ensure your app fetches new data while online but still caches the result for offline use, modify the service worker's `fetch` event to always try fetching fresh data from the network first.
+If the network is unavailable, the app will fall back to the cached response. This approach is known as a "network-first" strategy.
+
+Here’s how you can modify your service worker to implement this:
+
+```javascript
+// Define cache names
+const CACHE_NAME = 'my-app-cache-v1';
+const DYNAMIC_CACHE_NAME = 'my-app-dynamic-cache-v1';
+
+// Files to cache during install
+const STATIC_ASSETS = [
+  '/', 
+  '/index.html',
+  '/styles.css',
+  '/app.js',
+  '/favicon.ico',
+  // Add other static files you want to cache
+];
+
+// Install event: Cache static assets
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      console.log('Opened cache');
+      return cache.addAll(STATIC_ASSETS);
+    })
+  );
+});
+
+// Activate event: Clean up old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== CACHE_NAME && cache !== DYNAMIC_CACHE_NAME) {
+            console.log('Deleting old cache:', cache);
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+});
+
+// Fetch event: Network-first strategy
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    fetch(event.request)
+      .then(networkResponse => {
+        // If network fetch is successful, cache the response
+        return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      })
+      .catch(() => {
+        // If network fetch fails, fallback to cache
+        return caches.match(event.request);
+      })
+  );
+});
+```
+
+### How it works:
+
+1. **Network-first strategy**:
+   - The `fetch` event tries to fetch the latest data from the network first (`fetch(event.request)`).
+   - If the fetch is successful, the response is cached dynamically using `cache.put()`, and the fresh network response is returned to the app.
+   - If the network request fails (e.g., offline mode), it falls back to the cached response (`caches.match(event.request)`).
+
+### Benefits:
+- **Fresh Data**: Your app will always attempt to load fresh content when online.
+- **Offline Fallback**: If the network is unavailable, the cached version will still be served to ensure functionality. 
+
+This ensures the app benefits from up-to-date data while online but still works when offline.
