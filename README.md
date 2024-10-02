@@ -90,7 +90,7 @@ To make a web app a valid Progressive Web App (PWA) and installable, you'll need
    - This code caches important files when the service worker is installed and then serves the cached resources when the app is accessed offline.
 
 ### 6. **Register the Service Worker in Your HTML**
-   In your main HTML file (e.g., `index.html`), register the service worker by adding the following JavaScript:
+   In your main JS file (e.g., `script.js`), register the service worker by adding the following JavaScript:
 
    ```javascript
    if ('serviceWorker' in navigator) {
