@@ -135,7 +135,7 @@ To make a web app a valid Progressive Web App (PWA) and installable, you'll need
    });
    ```
 
-   - Add an install button in your HTML where users can click to install the PWA.
+   - Add an install button in your HTML where users can click to install the PWA.  This will be shown when `beforeinstallprompt` is run by the service worker.
 
    ```html
    <button id="installButton" style="display: none;">Install App</button>
